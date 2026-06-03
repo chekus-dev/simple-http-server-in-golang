@@ -2,7 +2,7 @@
 
 A minimalist web server written in Go (Golang) that serves a custom welcome message on your local machine.
 
-## 🚀 What This Code Does
+##  What This Code Does
 
 * **Starts a Local Web Server**: Listens on port `8080` of your computer.
 * **Handles Routing**: Routes all traffic from the root path (`/`) to a specific function.
@@ -10,7 +10,7 @@ A minimalist web server written in Go (Golang) that serves a custom welcome mess
 
 ---
 
-## 🛠️ Prerequisites
+##  Prerequisites
 
 Make sure you have Go installed on your machine. You can check by running:
 ```bash
