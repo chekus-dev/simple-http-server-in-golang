@@ -1,18 +1,30 @@
-package main 
+package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
-func Home(w http.ResponseWriter, res *http.Request) {
-	fmt.Fprint(w,"<h1> welcome to simple http server in golang <h1>")
+type UserMessage struct {
+	Message string `josn:message"`
+	Status  int    `json"status"`
 }
 
-func main(){
-	http.HandleFunc("/", Home)
-	fmt.Println("starting simple http server in golang on localhost:8080")
+func HomePage(w http.ResponseWriter, res *http.Request) {
+	w.Header().Set("content-type", "application/json")
+
+	data := UserMessage{
+		Message: "welcome to simple http server in go, JSON data!",
+		Status:  200,
+	}
+	json.NewEncoder(w).Encode(data)
+}
+
+func main() {
+	http.HandleFunc("/", HomePage)
+	fmt.Println("starting application/json on localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
