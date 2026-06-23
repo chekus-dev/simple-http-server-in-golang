@@ -187,4 +187,4 @@ This project demonstrates how to:
 
 ## Author
 
-**Chekus**
+**Chekus-dev**
