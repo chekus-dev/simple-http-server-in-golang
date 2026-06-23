@@ -1,30 +1,30 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 )
 
-type UserMessage struct {
-	Message string `josn:message"`
-	Status  int    `json"status"`
-}
-
-func HomePage(w http.ResponseWriter, res *http.Request) {
-	w.Header().Set("content-type", "application/json")
-
-	data := UserMessage{
-		Message: "welcome to simple http server in go, JSON data!",
-		Status:  200,
-	}
-	json.NewEncoder(w).Encode(data)
-}
-
 func main() {
-	http.HandleFunc("/", HomePage)
-	fmt.Println("starting application/json on localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mux := http.NewServeMux()
+	mux.HandleFunc("/user", homeHandler)
+	mux.HandleFunc("/customer", CustomerHandler)
+	mux.HandleFunc("/waiter", waiterHandler)
+	fmt.Println("starting the server on port :3000")
+	if err := http.ListenAndServe(":3000", mux); err != nil {
+		log.Fatal(err)
+	}
+}
 
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Welcome")
+}
+
+func CustomerHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello Customer")
+}
+
+func waiterHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "What can we get you")
 }
