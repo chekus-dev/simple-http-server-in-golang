@@ -14,6 +14,7 @@ A beginner-friendly HTTP server built with Go's standard `net/http` package. The
 
 ```text
 .
+|__ go.mod
 ├── main.go
 └── README.md
 ```
